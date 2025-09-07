@@ -1,0 +1,24 @@
+<div class="grid-container">
+  <h2>Data Grid</h2>
+
+  <table class="player-grid">
+    <thead>
+      <tr>
+        <th><input type="checkbox" id="selectAll" [checked]="selectAllChecked" (change)="SelectAll()"></th>
+        <th *ngFor="let col of columns">{{ col.header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="player-row" *ngFor="let row of data; let i = index">
+        <td><input type="checkbox" [id]="'select-' + i" [checked]="isRowSelected(i)" (change)="RowSelection(i)"></td>
+        <td *ngFor="let col of columns">
+          <img *ngIf="col.name === 'Image'" [src]="getImageSource(row)" alt="player photo" class="player-image" style="width: 60px; height: 60px; border: 2px solid; display: block;"
+          
+          >
+          <div *ngIf="col.name === 'Name'">{{row.Name}}</div>
+          <div *ngIf="col.name === 'Email'">{{row.Email}}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+</div>
